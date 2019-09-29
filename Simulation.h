@@ -4,6 +4,10 @@ using namespace std;
 
 class Simulation{
   public:
+    int generationNum;
+    Generation currentGen;
+    Generation nextGen;
+    bool stopSim;
     Simulation();
     Simulation(Generation g);
     ~Simulation();
@@ -11,4 +15,5 @@ class Simulation{
     void classicMode();
     void doughnutMode();
     void mirrorMode();
+    char newLocation(int adjacentCells, int row, int col);
 };

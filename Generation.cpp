@@ -88,3 +88,7 @@ int Generation::getNumRows(){
 int Generation::getNumCols(){
   return numCols;
 }
+
+char** Generation::getMyGrid(){
+  return myGrid;
+}

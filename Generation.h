@@ -15,4 +15,5 @@ class Generation{
     void printGen(); //prints the generation grid
     int getNumCols();
     int getNumRows();
+    char** getMyGrid();
 };
