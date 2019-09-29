@@ -22,6 +22,7 @@ Intro::~Intro()//destructor
 int configChoice = 0;
 int modeChoice = 0;
 int intermissionChoice = 0;
+int finalChoice = 0; //18 possible permutations for the choices of config,mode, and intermission
 
 
 void Intro::askConfig(){ //asks the user for configuration
