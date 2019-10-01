@@ -26,7 +26,7 @@ Generation::Generation(int row, int col){//overloaded constructor
   for(int i = 0;i < numRows;++i){
     myGrid[i] = new char[numCols];
   }
-  setDimensions(5,3);
+  //setDimensions(5,3);
 }
 Generation::~Generation()//destructor
 {
@@ -102,6 +102,7 @@ void Generation::printGen(){
     }
     cout << endl;
   }
+  cout << "hello" << endl;
 }
 
 void Generation::copyGen(Generation g1){
@@ -145,7 +146,6 @@ void Generation::setMapFile(string fileName){
         col = stoi(tempString);
         setDimensions(row, col);
         cout << "setDimensions" << endl;
-        printGen();
       }
       else{
         for(int j = 0;j<numCols;++j){

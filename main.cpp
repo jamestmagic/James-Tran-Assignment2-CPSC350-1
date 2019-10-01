@@ -28,7 +28,6 @@ int main(int argc, char** argv){
     g.setMapFile(mapFileName);
   }
 
-
   g.printGen();
   Simulation *s = new Simulation(g);
   s->play(1, 2);

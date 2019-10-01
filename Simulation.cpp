@@ -14,12 +14,12 @@ Generation currentGen;
 Generation* nextGen;
 bool stopSim;
 Simulation::Simulation(){
-  generationNum = 1;
+  generationNum = 0;
   stopSim = false;
 }
 
 Simulation::Simulation(Generation g){
-  generationNum = 1;
+  generationNum = 0;
   currentGen = g;
   nextGen = Generation(g.getNumRows(), g.getNumCols());
   stopSim = false;
@@ -41,19 +41,20 @@ void Simulation::play(int modeChoice, int intermissionChoice){
     else if(modeChoice == 3){
       mirrorMode();
     }
-    //currentGen = g;
-    //nextGen = Generation(g.getNumRows(), g.getNumCols());
+    // currentGen = g;
+    // nextGen = Generation(g.getNumRows(), g.getNumCols());
     // currentGen.printGen();
     cout << "printing new gen" << endl;
     nextGen.printGen();
-    cout << "copying" << endl;
+    // cout << "copying" << endl;
     currentGen.copyGen(nextGen);
     cout << "copied" << endl;
     nextGen = Generation(currentGen.getNumRows(), currentGen.getNumCols());
     if(intermissionChoice == 1){
-
+      system("Pause");
     }
     else if(intermissionChoice == 2){
+      cout << "Press Enter to Continue to next Generation" << endl;
       cin.ignore();
     }
     else if(intermissionChoice == 3){
@@ -64,7 +65,7 @@ void Simulation::play(int modeChoice, int intermissionChoice){
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Simulation::doughnutMode(){
   int adjacentCells;
-  cout << "classic" << endl;
+  cout << "doughnut" << endl;
   for(int i = 0;i < currentGen.getNumRows();++i){
     cout << "iterating through rows" << endl;
     cout << "Row = " << i << endl;
@@ -73,6 +74,11 @@ void Simulation::doughnutMode(){
       cout << "Col = " << j << endl;
       cout << "Row = " << i << endl;
       adjacentCells = 0; //tracks how many cells are adjacent to given location
+
+
+      //if statements are in order of iteration, prioritizing corners and edges over the middle of the grid
+      //each time a cell is detected in an adjacent location, adjacent cells is incremented by 1
+      //at the end of each case, the value of adjacent cells determines what takes the cell location in the next generation
       if(i==0 && j==0){ //position [0][0]
         cout << " i, j = " << i << "," << j << endl;
         cout << "Row1 = " << i << endl;
