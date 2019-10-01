@@ -27,7 +27,7 @@ int finalChoice = 0; //18 possible permutations for the choices of config,mode, 
 
 void Intro::askConfig(){ //asks the user for configuration
   while(configChoice != 1 && configChoice != 2){
-    cout << "What kind of configuration would like to use?" <<endl;
+    cout << "What kind of configuration would you like to use?" <<endl;
     cout << "1. Random" << endl;
     cout << "2. Specified Flat" << endl;
     cin >> configChoice;

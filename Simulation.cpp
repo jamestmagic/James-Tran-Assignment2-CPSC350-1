@@ -46,7 +46,9 @@ void Simulation::play(int modeChoice, int intermissionChoice){
     // currentGen.printGen();
     cout << "printing new gen" << endl;
     nextGen.printGen();
+    cout << "copying" << endl;
     currentGen.copyGen(nextGen);
+    cout << "copied" << endl;
     nextGen = Generation(currentGen.getNumRows(), currentGen.getNumCols());
     if(intermissionChoice == 1){
 

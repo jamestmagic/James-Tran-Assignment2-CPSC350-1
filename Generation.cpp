@@ -54,22 +54,11 @@ bool Generation::emptyGen(){
 
 void Generation::setDimensions(int row, int col){
   myGrid = new char*[row];
-  for(int i = 0;i < numRows;++i){
-    myGrid[i] = new char[numCols];
+  for(int i = 0;i < row;++i){
+    myGrid[i] = new char[col];
   }
-}
-
-void Generation::setMapFile(string fileName){
-  // ifstream readFile(fileName);
-  // int lineNum = 0;
-  // int row
-  // while(getline(readFile, dnaString)){
-  //   if(lineNum == 0){
-  //     //dnaString()
-  //   }
-  //   ++numLines; //counts number of lines
-  //   numChars = numChars + dnaString.length(); //keeps track of total number of characters in file
-  // }
+  numRows = row;
+  numCols = col;
 }
 
 void Generation::randomGrid(){
@@ -137,4 +126,38 @@ char** Generation::getMyGrid(){
 void Generation::changeLocation(int row, int col, char c){
   cout << "changeLocation" << endl;
   myGrid[row][col] = c;
+}
+
+void Generation::setMapFile(string fileName){
+  try{
+    ifstream readFile(fileName);
+    string tempString;
+    int lineNum = 0;
+    int row;
+    int col;
+    int rowWrite = 0;
+    //Generation mapGen;
+    while(getline(readFile, tempString)){
+      if(lineNum == 0){
+        row = stoi(tempString);
+      }
+      else if(lineNum == 1){
+        col = stoi(tempString);
+        setDimensions(row, col);
+        cout << "setDimensions" << endl;
+        printGen();
+      }
+      else{
+        for(int j = 0;j<numCols;++j){
+          //cout << "changing location" << endl;
+          myGrid[rowWrite][j] = tempString[j];
+        }
+        ++rowWrite;
+      }
+      ++lineNum;
+    }
+  }
+  catch(ifstream::failure e){
+    cout << "Exception: Could not read or open file" << endl;
+  }
 }
