@@ -19,4 +19,5 @@ class Generation{
     void changeLocation(int row, int col, char c);
     void setDimensions(int row, int col);
     bool emptyGen();
+    void copyGen(Generation g1);
 };

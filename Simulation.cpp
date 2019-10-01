@@ -41,10 +41,13 @@ void Simulation::play(int modeChoice, int intermissionChoice){
     else if(modeChoice == 3){
       mirrorMode();
     }
-    currentGen = g;
-    nextGen = Generation(g.getNumRows(), g.getNumCols());
+    //currentGen = g;
+    //nextGen = Generation(g.getNumRows(), g.getNumCols());
+    // currentGen.printGen();
     cout << "printing new gen" << endl;
     nextGen.printGen();
+    currentGen.copyGen(nextGen);
+    nextGen = Generation(currentGen.getNumRows(), currentGen.getNumCols());
     if(intermissionChoice == 1){
 
     }
@@ -56,11 +59,233 @@ void Simulation::play(int modeChoice, int intermissionChoice){
     }
   }
 }
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Simulation::doughnutMode(){
+  int adjacentCells;
+  cout << "classic" << endl;
+  for(int i = 0;i < currentGen.getNumRows();++i){
+    cout << "iterating through rows" << endl;
+    cout << "Row = " << i << endl;
+    for(int j = 0;j < currentGen.getNumCols();++j){
+      cout << "iterating through cols" << endl;
+      cout << "Col = " << j << endl;
+      cout << "Row = " << i << endl;
+      adjacentCells = 0; //tracks how many cells are adjacent to given location
+      if(i==0 && j==0){ //position [0][0]
+        cout << " i, j = " << i << "," << j << endl;
+        cout << "Row1 = " << i << endl;
+        if(!currentGen.isEmpty(i+1,j)){
+          cout << "isEmpty"<< endl;
+          ++adjacentCells;
+        }
+        if(!currentGen.isEmpty(i+1,j+1)){
+          cout << "isEmpty"<< endl;
+          ++adjacentCells;
+        }
+        if(!currentGen.isEmpty(i, j+1)){
+          cout << "isEmpty"<< endl;
+          ++adjacentCells;
+        }
+        cout << "changing location" << endl;
+        cout << "Row2 = " << i << endl;
+        cout << "Adjacent Cells = " << adjacentCells << endl;
+        //nextGen.changeLocation(i, j, newLocation(adjacentCells, i, j));
+        nextGen.changeLocation(i, j, newLocation(adjacentCells, i, j));
+        continue;
+        //cout << "changed new gen grid" << endl;
+      }
+      else if(i==0 && j<(currentGen.getNumCols()-1)){//top edge
+        cout << " i, j = " << i << "," << j << endl;
+        if(!currentGen.isEmpty(i+1,j)){
+          ++adjacentCells;
+        }
+        cout << "Row1 = " << i << endl;
+        if(!currentGen.isEmpty(i+1,j+1)){
+          ++adjacentCells;
+        }
+        if(!currentGen.isEmpty(i,j+1)){
+          ++adjacentCells;
+        }
+        if(!currentGen.isEmpty(i, j-1)){
+          ++adjacentCells;
+        }
+        if(!currentGen.isEmpty(i+1, j-1)){
+          ++adjacentCells;
+        }
+        cout << "Row2 = " << i << endl;
+        cout << "Adjacent Cells = " << adjacentCells << endl;
+        nextGen.changeLocation(i, j, newLocation(adjacentCells, i, j));
+        cout << "changed new gen grid" << endl;
+        continue;
+      }
+      else if(i==0 && j==(currentGen.getNumCols()-1)){//top right corner
+        cout << " i, j = " << i << "," << j << endl;
+        if(!currentGen.isEmpty(i+1, j)){
+          ++adjacentCells;
+        }
+        if(!currentGen.isEmpty(i+1, j-1)){
+          ++adjacentCells;
+        }
+        if(!currentGen.isEmpty(i, j-1)){
+          ++adjacentCells;
+        }
+        cout << "Adjacent Cells = " << adjacentCells << endl;
+        nextGen.changeLocation(i, j, newLocation(adjacentCells, i, j));
+        continue;
+      }
+      else if(i<(currentGen.getNumRows()-1) && j==0){//left edge
+        cout << " i, j = " << i << "," << j << endl;
+        cout << "Row1 = " << i << endl;
+        if(!currentGen.isEmpty(i+1,j)){
 
+          ++adjacentCells;
+        }
+        if(!currentGen.isEmpty(i+1,j+1)){
+
+          ++adjacentCells;
+        }
+        if(!currentGen.isEmpty(i, j+1)){
+          ++adjacentCells;
+        }
+        if(!currentGen.isEmpty(i-1, j)){
+
+          ++adjacentCells;
+        }
+        if(!currentGen.isEmpty(i-1, j+1)){
+
+          ++adjacentCells;
+        }
+        cout << "Row2 = " << i << endl;
+        cout << "Adjacent Cells = " << adjacentCells << endl;
+        nextGen.changeLocation(i, j, newLocation(adjacentCells, i, j));
+        cout << "Row3 = " << i << endl;
+        cout << "changed new gen grid" << endl;
+        continue;
+      }
+      else if(i<(currentGen.getNumRows()-1) && j==(currentGen.getNumCols()-1)){//right edge
+        cout << " i, j = " << i << "," << j << endl;
+        cout << "Row1 = " << i << endl;
+        if(!currentGen.isEmpty(i+1,j)){
+          ++adjacentCells;
+        }
+        if(!currentGen.isEmpty(i-1,j)){
+          ++adjacentCells;
+        }
+        if(!currentGen.isEmpty(i, j-1)){
+          ++adjacentCells;
+        }
+        if(!currentGen.isEmpty(i+1, j-1)){
+          ++adjacentCells;
+        }
+        if(!currentGen.isEmpty(i-1, j-1)){
+          ++adjacentCells;
+        }
+        cout << "Row2 = " << i << endl;
+        cout << "Adjacent Cells = " << adjacentCells << endl;
+        nextGen.changeLocation(i, j, newLocation(adjacentCells, i, j));
+        cout << "changed new gen grid" << endl;
+        continue;
+      }
+      else if(i==(currentGen.getNumRows()-1) && j==0){ //bottom left corner
+        cout << " i, j = " << i << "," << j << endl;
+        if(!currentGen.isEmpty(i-1, j)){
+
+          ++adjacentCells;
+        }
+        if(!currentGen.isEmpty(i-1, j+1)){
+
+          ++adjacentCells;
+        }
+        if(!currentGen.isEmpty(i, j+1)){
+          ++adjacentCells;
+        }
+        cout << "Adjacent Cells = " << adjacentCells << endl;
+        nextGen.changeLocation(i, j, newLocation(adjacentCells, i, j));
+        continue;
+      }
+      else if(i == (currentGen.getNumRows()-1) && j<(currentGen.getNumCols()-1)){//bottom edge
+        cout << " i, j = " << i << "," << j << endl;
+        if(!currentGen.isEmpty(i,j+1)){
+          ++adjacentCells;
+        }
+        if(!currentGen.isEmpty(i-1,j+1)){
+
+          ++adjacentCells;
+        }
+        if(!currentGen.isEmpty(i-1,j)){
+
+          ++adjacentCells;
+        }
+        if(!currentGen.isEmpty(i-1, j-1)){
+
+          ++adjacentCells;
+        }
+        if(!currentGen.isEmpty(i, j-1)){
+          ++adjacentCells;
+        }
+        cout << "Adjacent Cells = " << adjacentCells << endl;
+        nextGen.changeLocation(i, j, newLocation(adjacentCells, i, j));
+        cout << "changed new gen grid" << endl;
+        continue;
+      }
+      else if(i==(currentGen.getNumRows()-1) && j==(currentGen.getNumCols()-1)){//bottom right corner
+        cout << " i, j = " << i << "," << j << endl;
+        if(!currentGen.isEmpty(i-1, j)){
+
+          ++adjacentCells;
+        }
+        if(!currentGen.isEmpty(i-1, j-1)){
+
+          ++adjacentCells;
+        }
+        if(!currentGen.isEmpty(i, j-1)){
+          ++adjacentCells;
+        }
+        cout << "Adjacent Cells = " << adjacentCells << endl;
+        nextGen.changeLocation(i, j, newLocation(adjacentCells, i, j));
+        continue;
+      }
+      else if(i>0 && j>0 && i<(currentGen.getNumRows()-1) && j<(currentGen.getNumCols()-1)){ //eveything inbetween
+        cout << " i, j = " << i << "," << j << endl;
+        cout << ">>Row1 = " << i << endl;
+        if(!currentGen.isEmpty(i+1,j)){
+          ++adjacentCells;
+        }
+        if(!currentGen.isEmpty(i+1,j+1)){
+          ++adjacentCells;
+        }
+        if(!currentGen.isEmpty(i,j+1)){
+          ++adjacentCells;
+        }
+        if(!currentGen.isEmpty(i, j-1)){
+          ++adjacentCells;
+        }
+        if(!currentGen.isEmpty(i+1, j-1)){
+          ++adjacentCells;
+        }
+        if(!currentGen.isEmpty(i-1, j)){
+          ++adjacentCells;
+        }
+        if(!currentGen.isEmpty(i-1, j-1)){
+          ++adjacentCells;
+        }
+        if(!currentGen.isEmpty(i-1, j+1)){
+          ++adjacentCells;
+        }
+        cout << ">>Row2 = " << i << endl;
+        cout << "Adjacent Cells = " << adjacentCells << endl;
+        nextGen.changeLocation(i, j, newLocation(adjacentCells, i, j));
+        cout << "changed new gen grid" << endl;
+        continue;
+      }
+      cout << "End column iteration" << endl;
+      cout << "Col = " << j << endl;
+    }
+    cout << "End row iteration" << endl;
+    cout << "Row = " << i << endl;
+  }
 }
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Simulation::classicMode(){
   int adjacentCells;
   cout << "classic" << endl;
@@ -169,19 +394,16 @@ void Simulation::classicMode(){
         if(!currentGen.isEmpty(i+1,j)){
           ++adjacentCells;
         }
-        if(!currentGen.isEmpty(i-1,j+1)){
-
+        if(!currentGen.isEmpty(i-1,j)){
           ++adjacentCells;
         }
         if(!currentGen.isEmpty(i, j-1)){
           ++adjacentCells;
         }
         if(!currentGen.isEmpty(i+1, j-1)){
-
           ++adjacentCells;
         }
-        if(!currentGen.isEmpty(i-1, j)){
-
+        if(!currentGen.isEmpty(i-1, j-1)){
           ++adjacentCells;
         }
         cout << "Row2 = " << i << endl;
@@ -289,7 +511,7 @@ void Simulation::classicMode(){
     cout << "Row = " << i << endl;
   }
 }
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Simulation::mirrorMode(){
 
 }
@@ -309,4 +531,12 @@ char Simulation::newLocation(int adjacentCells, int row, int col){ //returns a n
   else{
     return '-';
   }
+}
+
+void Simulation::copyGen(){
+  // for(int i = 0;i<nextGen.getNumRows();++i){
+  //   for(int j = 0;j<nextGen.getNumCols();++j){
+  //     myGrid[i][j] = getMyGrid()[i][j];
+  //   }
+  // }
 }

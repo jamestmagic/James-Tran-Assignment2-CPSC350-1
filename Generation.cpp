@@ -101,6 +101,14 @@ void Generation::printGen(){
   }
 }
 
+void Generation::copyGen(Generation g1){
+  for(int i = 0;i<g1.getNumRows();++i){
+    for(int j = 0;j<g1.getNumCols();++j){
+      myGrid[i][j] = g1.getMyGrid()[i][j];
+    }
+  }
+}
+
 int Generation::getNumRows(){
   return numRows;
 }
