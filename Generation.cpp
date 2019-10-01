@@ -33,13 +33,29 @@ Generation::~Generation()//destructor
 }
 
 bool Generation::isEmpty(int row, int col){
-  cout << "isEmpty" << endl;
   char a = myGrid[row][col];
-  cout << "isEmpty2" << endl;
   if(a == '-'){
     return true;
   }
   return false;
+}
+
+bool Generation::emptyGen(){
+  for(int i = 0;i < numRows;++i){
+    for(int j = 0;j < numCols;++j){
+      if(myGrid[i][j] == 'X'){
+        return false;
+      }
+    }
+  }
+  return true;
+}
+
+void Generation::setDimensions(int row, int col){
+  myGrid = new char*[row];
+  for(int i = 0;i < numRows;++i){
+    myGrid[i] = new char[numCols];
+  }
 }
 
 void Generation::randomGrid(){
