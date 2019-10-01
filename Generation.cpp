@@ -29,11 +29,14 @@ Generation::Generation(int row, int col){//overloaded constructor
 }
 Generation::~Generation()//destructor
 {
-  cout << "object deleted" << endl;
+  cout << "Generation deleted" << endl;
 }
 
-bool isEmpty(int row, int col){
-  if(myGrid[row][col] == '-'){
+bool Generation::isEmpty(int row, int col){
+  cout << "isEmpty" << endl;
+  char a = myGrid[row][col];
+  cout << "isEmpty2" << endl;
+  if(a == '-'){
     return true;
   }
   return false;
@@ -43,14 +46,14 @@ void Generation::randomGrid(){
   srand(time(NULL));
   int randomRows = (rand() % 5) + 5;
   int randomCol = (rand() % 5) + 5;
-  cout << "randomRows = " << randomRows << endl;
-  cout << "randomCol = " << randomCol << endl;
+  //cout << "randomRows = " << randomRows << endl;
+  //cout << "randomCol = " << randomCol << endl;
   numCols = randomCol;
   numRows = randomRows;
   double density = ((double)rand()/RAND_MAX)/2;
-  cout << "density = " << density << endl;
+  //cout << "density = " << density << endl;
   int totalCells = (density*(randomRows*randomCol)); //calculates how many cells are in the conifguration based on density
-  cout << "totalCells = " << totalCells << endl;
+  //cout << "totalCells = " << totalCells << endl;
   myGrid = new char*[numRows];
   for(int i = 0;i < numRows;++i){
     myGrid[i] = new char[numCols];
@@ -69,11 +72,11 @@ void Generation::randomGrid(){
       }
     }
   }
-  cout << "end random" << endl;
+  //cout << "end random" << endl;
 }
 
 void Generation::printGen(){
-  cout << "pinting" << endl;
+  cout << "printing" << endl;
   for(int i = 0;i < numRows;++i){
     for(int j = 0;j < numCols;++j){
       cout << myGrid[i][j];
@@ -91,4 +94,9 @@ int Generation::getNumCols(){
 
 char** Generation::getMyGrid(){
   return myGrid;
+}
+
+void Generation::changeLocation(int row, int col, char c){
+  cout << "changeLocation" << endl;
+  myGrid[row][col] = c;
 }

@@ -64,14 +64,14 @@ void Intro::askIntermission(){
   }
 }
 
-int getConfigChoice(){
+int Intro::getConfigChoice(){
   return configChoice;
 }
 
-int getmodeChoice(){
+int Intro::getmodeChoice(){
   return modeChoice;
 }
 
-int getIntermissionChoice(){
+int Intro::getIntermissionChoice(){
   return intermissionChoice;
 }

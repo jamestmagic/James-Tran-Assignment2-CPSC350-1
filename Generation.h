@@ -16,4 +16,5 @@ class Generation{
     int getNumCols();
     int getNumRows();
     char** getMyGrid();
+    void changeLocation(int row, int col, char c);
 };

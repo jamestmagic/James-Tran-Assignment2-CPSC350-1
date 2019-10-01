@@ -1,6 +1,7 @@
 #define _USE_MATH_DEFINES
 #include "Intro.h"
-#include "Generation.h"
+//#include "Generation.h"
+#include "Simulation.h"
 #include <iostream>
 #include <fstream>
 #include <math.h>
@@ -17,7 +18,12 @@ int main(int argc, char** argv){
   // intro.askConfig();
   // intro.askMode();
   // intro.askIntermission();
+  // if(intro.getConfigChoice() == 2){
+  //
+  // }
   Generation g;
-  // g.randomGrid();
-  // g.printGen();
+  g.randomGrid();
+  g.printGen();
+  Simulation *s = new Simulation(g);
+  s->play(1, 2);
 }
