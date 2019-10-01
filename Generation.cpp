@@ -26,6 +26,7 @@ Generation::Generation(int row, int col){//overloaded constructor
   for(int i = 0;i < numRows;++i){
     myGrid[i] = new char[numCols];
   }
+  setDimensions(5,3);
 }
 Generation::~Generation()//destructor
 {
@@ -56,6 +57,19 @@ void Generation::setDimensions(int row, int col){
   for(int i = 0;i < numRows;++i){
     myGrid[i] = new char[numCols];
   }
+}
+
+void Generation::setMapFile(string fileName){
+  // ifstream readFile(fileName);
+  // int lineNum = 0;
+  // int row
+  // while(getline(readFile, dnaString)){
+  //   if(lineNum == 0){
+  //     //dnaString()
+  //   }
+  //   ++numLines; //counts number of lines
+  //   numChars = numChars + dnaString.length(); //keeps track of total number of characters in file
+  // }
 }
 
 void Generation::randomGrid(){

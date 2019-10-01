@@ -20,4 +20,5 @@ class Generation{
     void setDimensions(int row, int col);
     bool emptyGen();
     void copyGen(Generation g1);
+    void setMapFile(string fileName);
 };

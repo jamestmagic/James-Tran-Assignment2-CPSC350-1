@@ -31,7 +31,6 @@ void Intro::askConfig(){ //asks the user for configuration
     cout << "1. Random" << endl;
     cout << "2. Specified Flat" << endl;
     cin >> configChoice;
-    if(random)
     if(configChoice != 1 && configChoice != 2){
       cout << "Please enter a valid configuration choice." << endl;
     }
