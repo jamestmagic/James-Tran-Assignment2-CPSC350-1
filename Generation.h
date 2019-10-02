@@ -1,4 +1,5 @@
 #include <iostream> //preprocessor directive
+#include <fstream>
 
 using namespace std;
 
@@ -13,9 +14,9 @@ class Generation{
     void randomGrid();
     bool isEmpty(int row, int col);
     void printGen(); //prints the generation grid
-    int getNumCols();
-    int getNumRows();
-    char** getMyGrid();
+    int getNumCols(); //accessor for columns
+    int getNumRows(); //accessor for rows
+    char** getMyGrid(); //accessor for the grid
     void changeLocation(int row, int col, char c);
     void setDimensions(int row, int col);
     bool emptyGen();

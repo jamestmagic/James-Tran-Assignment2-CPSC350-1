@@ -9,7 +9,7 @@
 
 using namespace std;
 
-char** myGrid;
+char** myGrid; //pointer 2d array
 int numRows = 0;
 int numCols = 0;
 Generation::Generation()//constructor
@@ -26,14 +26,12 @@ Generation::Generation(int row, int col){//overloaded constructor
   for(int i = 0;i < numRows;++i){
     myGrid[i] = new char[numCols];
   }
-  //setDimensions(5,3);
 }
 Generation::~Generation()//destructor
 {
-  cout << "Generation deleted" << endl;
 }
 
-bool Generation::isEmpty(int row, int col){
+bool Generation::isEmpty(int row, int col){ //returns true if given location is empty, false if occupied
   char a = myGrid[row][col];
   if(a == '-'){
     return true;
@@ -41,7 +39,7 @@ bool Generation::isEmpty(int row, int col){
   return false;
 }
 
-bool Generation::emptyGen(){
+bool Generation::emptyGen(){ //returns true if the whole grid is empty, false if occupied
   for(int i = 0;i < numRows;++i){
     for(int j = 0;j < numCols;++j){
       if(myGrid[i][j] == 'X'){
@@ -52,7 +50,7 @@ bool Generation::emptyGen(){
   return true;
 }
 
-void Generation::setDimensions(int row, int col){
+void Generation::setDimensions(int row, int col){ //sets dimensions for grid
   myGrid = new char*[row];
   for(int i = 0;i < row;++i){
     myGrid[i] = new char[col];
@@ -61,19 +59,15 @@ void Generation::setDimensions(int row, int col){
   numCols = col;
 }
 
-void Generation::randomGrid(){
+void Generation::randomGrid(){ //creates random dimensions and density, places cells into grid randomly
   srand(time(NULL));
   int randomRows = (rand() % 5) + 5;
   int randomCol = (rand() % 5) + 5;
-  //cout << "randomRows = " << randomRows << endl;
-  //cout << "randomCol = " << randomCol << endl;
   numCols = randomCol;
   numRows = randomRows;
   double density = ((double)rand()/RAND_MAX)/2;
-  //cout << "density = " << density << endl;
   int totalCells = (density*(randomRows*randomCol)); //calculates how many cells are in the conifguration based on density
-  //cout << "totalCells = " << totalCells << endl;
-  myGrid = new char*[numRows];
+  myGrid = new char*[numRows]; //sets new dimensions
   for(int i = 0;i < numRows;++i){
     myGrid[i] = new char[numCols];
   }
@@ -81,7 +75,7 @@ void Generation::randomGrid(){
     for(int i = 0;i < numRows;++i){
       for(int j = 0;j < numCols;++j){
         int random = (rand() % 10) + 1; //random variable for giving a grid space a cell
-        if(random <= 5 && totalCells > 0){
+        if(random <= 5 && totalCells > 0){ //50% chance it will be placed in the given spot
           myGrid[i][j] = 'X';
           --totalCells;;
         }
@@ -91,21 +85,18 @@ void Generation::randomGrid(){
       }
     }
   }
-  //cout << "end random" << endl;
 }
 
-void Generation::printGen(){
-  cout << "printing" << endl;
+void Generation::printGen(){ //prints grid into console
   for(int i = 0;i < numRows;++i){
     for(int j = 0;j < numCols;++j){
       cout << myGrid[i][j];
     }
     cout << endl;
   }
-  cout << "hello" << endl;
 }
 
-void Generation::copyGen(Generation g1){
+void Generation::copyGen(Generation g1){ //copies one grid to another
   for(int i = 0;i<g1.getNumRows();++i){
     for(int j = 0;j<g1.getNumCols();++j){
       myGrid[i][j] = g1.getMyGrid()[i][j];
@@ -113,23 +104,22 @@ void Generation::copyGen(Generation g1){
   }
 }
 
-int Generation::getNumRows(){
+int Generation::getNumRows(){ //access the row count
   return numRows;
 }
-int Generation::getNumCols(){
+int Generation::getNumCols(){ //access the column count
   return numCols;
 }
 
-char** Generation::getMyGrid(){
+char** Generation::getMyGrid(){ //access the 2d array
   return myGrid;
 }
 
-void Generation::changeLocation(int row, int col, char c){
-  cout << "changeLocation" << endl;
+void Generation::changeLocation(int row, int col, char c){ //changes the location on grid to given char
   myGrid[row][col] = c;
 }
 
-void Generation::setMapFile(string fileName){
+void Generation::setMapFile(string fileName){ //translates info from map file and creates the grid
   try{
     ifstream readFile(fileName);
     string tempString;
@@ -145,7 +135,6 @@ void Generation::setMapFile(string fileName){
       else if(lineNum == 1){
         col = stoi(tempString);
         setDimensions(row, col);
-        cout << "setDimensions" << endl;
       }
       else{
         for(int j = 0;j<numCols;++j){
@@ -157,7 +146,7 @@ void Generation::setMapFile(string fileName){
       ++lineNum;
     }
   }
-  catch(ifstream::failure e){
+  catch(ifstream::failure e){ //throws expection in case of ioexception
     cout << "Exception: Could not read or open file" << endl;
   }
 }

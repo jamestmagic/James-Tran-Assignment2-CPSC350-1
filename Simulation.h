@@ -1,4 +1,5 @@
 #include <iostream> //preprocessor directive
+#include <fstream>
 #include "Generation.h"
 using namespace std;
 
