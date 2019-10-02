@@ -66,7 +66,7 @@ void Generation::randomGrid(){ //creates random dimensions and density, places c
   numCols = randomCol;
   numRows = randomRows;
   double density = ((double)rand()/RAND_MAX)/2;
-  int totalCells = (density*(randomRows*randomCol)); //calculates how many cells are in the conifguration based on density
+  int totalCells = (density*(randomRows*randomCol)) + 1; //calculates how many cells are in the conifguration based on density
   myGrid = new char*[numRows]; //sets new dimensions
   for(int i = 0;i < numRows;++i){
     myGrid[i] = new char[numCols];
