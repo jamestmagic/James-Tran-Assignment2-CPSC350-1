@@ -16,5 +16,4 @@ class Simulation{
     void doughnutMode();
     void mirrorMode();
     char newLocation(int adjacentCells, int row, int col);
-    void copyGen();
 };

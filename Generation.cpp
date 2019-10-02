@@ -161,3 +161,14 @@ void Generation::setMapFile(string fileName){
     cout << "Exception: Could not read or open file" << endl;
   }
 }
+
+bool Generation::compareGen(Generation last){ //returns true if the two generation are the same, false if not
+  for(int i = 0;i<last.getNumRows();++i){
+    for(int j = 0;j<last.getNumCols();++j){
+      if(myGrid[i][j] != last.getMyGrid()[i][j]){
+        return false;
+      }
+    }
+  }
+  return true;
+}

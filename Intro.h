@@ -13,6 +13,6 @@ class Intro{
     void askMode();
     void askIntermission();
     int getConfigChoice();
-    int getmodeChoice();
+    int getModeChoice();
     int getIntermissionChoice();
 };

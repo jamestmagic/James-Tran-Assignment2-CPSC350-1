@@ -30,5 +30,5 @@ int main(int argc, char** argv){
 
   g.printGen();
   Simulation *s = new Simulation(g);
-  s->play(1, 2);
+  s->play(intro.getModeChoice(), intro.getIntermissionChoice());
 }

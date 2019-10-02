@@ -21,5 +21,5 @@ class Generation{
     bool emptyGen();
     void copyGen(Generation g1);
     void setMapFile(string fileName);
-    //void setMapFile(string filename);
+    bool compareGen(Generation last);
 };
